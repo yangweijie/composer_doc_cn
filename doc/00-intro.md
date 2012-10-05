@@ -17,32 +17,32 @@
 			<div id="main" role="main">
 				<ul class="toc">
 					<li>
-						<a href="#dependency-management">Dependency management</a> 
+						<a href="#dependency-management">依赖处理</a> 
 					</li>
 					<li>
-						<a href="#declaring-dependencies">Declaring dependencies</a> 
+						<a href="#declaring-dependencies">声明依赖关系</a> 
 					</li>
 					<li>
-						<a href="#installation">Installation</a> 
+						<a href="#installation">安装</a> 
 						<ul>
 							<li>
-								<a href="#downloading-the-composer-executable">Downloading the Composer Executable</a> 
+								<a href="#downloading-the-composer-executable">下载Composer</a> 
 								<ul>
 									<li>
-										<a href="#locally">Locally</a> 
+										<a href="#locally">局部性安装</a> 
 									</li>
 									<li>
-										<a href="#globally">Globally</a> 
+										<a href="#globally">全局性安装</a> 
 									</li>
 								</ul>
 							</li>
 							<li>
-								<a href="#using-composer">Using Composer</a> 
+								<a href="#using-composer">使用 Composer</a> 
 							</li>
 						</ul>
 					</li>
 					<li>
-						<a href="#autoloading">Autoloading</a> 
+						<a href="#autoloading">自动加载</a> 
 					</li>
 				</ul>
 				<h1 id="introduction">说明<a href="#introduction" class="anchor">#</a></h1>
@@ -58,40 +58,35 @@
 				<p>d) Composer 会找出某个库的某个版本需要被安装，并且安装它们（或者说，将它们下载到你的项目中）</p>
 				<h2 id="declaring-dependencies">声明依赖关系<a href="#declaring-dependencies" class="anchor">#</a></h2>
 				<p>让我们假设你正在创建一个项目，并且你需要一个库帮你处理打印log信息，然后你决定 使用 <a href="https://github.com/Seldaek/monolog">monolog</a>。为了将它加入到你的项目中去， 你要做的仅仅是创建一个 <code>composer.json</code> 文件，里面对说明了项目的依赖性。</p>
-				<pre><code>{
-					"require": {
-						"monolog/monolog": "1.0.*"
-					}
-				}
-				</code></pre>
+<pre><code>{
+    "require": {
+        "monolog/monolog": "1.0.*"
+    }
+}
+</code></pre>
 				<p>我们简单的称述了我们项目需要 版本大于 1.0 的 <code>monolog/monolog</code>包</p>
 				<h2 id="installation">安装<a href="#installation" class="anchor">#</a></h2>
 				<h3 id="downloading-the-composer-executable">下载Composer<a href="#downloading-the-composer-executable" class="anchor">#</a></h3>
 				<h4 id="locally">局部性安装<a href="#locally" class="anchor">#</a></h4>
 				<p>为了获得Composer的帮助，我们需要完成两件事情。第一件是安装Composer (再次说一下，要做的仅仅是将它下载进你的项目中)</p>
-				<pre><code>$ curl -s https://getcomposer.org/installer | php
-				</code></pre>
+				<pre><code>$ curl -s https://getcomposer.org/installer | php</code></pre>
 				<p>这操作仅仅确认一些PHP的设置，然后下载 <code>composer.phar</code> 到你的工作目录。这个就是Composer库。 这是个PHAR格式文件（PHP 文件），它可以帮助用户在命令行下完成一些操作。</p>
 				<p>你可以使用 <code>--install-dir</code>
 				选项附上目标路径（绝对路径或者相当路径均可）选择Composer的安装路径：</p>
-				<pre><code>$ curl -s https://getcomposer.org/installer | php -- --install-dir=bin
-				</code></pre>
+				<pre><code>$ curl -s https://getcomposer.org/installer | php -- --install-dir=bin</code></pre>
 				<h4 id="globally">全局性安装<a href="#globally" class="anchor">#</a></h4>
 				<p>你可以将上述文件置于你想要的任何位置。不过如果你选择将它放在系统  <code>PATH</code>路径下， 你就可以全局的调用它。在类Unix系统中，你甚至可以在使用时不加 <code>php</code>前缀.</p>
 				<p>运行一下命令，你将轻松的使得 <code>composer</code> 可以全局调用：</p>
 				<pre><code>$ curl -s https://getcomposer.org/installer | php
-				$ sudo mv composer.phar /usr/local/bin/composer
-				</code></pre>
+$ sudo mv composer.phar /usr/local/bin/composer</code></pre>
 				<p>接下来，只须输入 <code>composer</code> 就可以运行 composer了</p>
 				<h3 id="using-composer">使用 Composer<a href="#using-composer" class="anchor">#</a></h3>
 				<p>然后，运行 <code>install</code> 命令解决库的依赖关系：</p>
-				<pre><code>$ php composer.phar install
-				</code></pre>
+				<pre><code>$ php composer.phar install</code></pre>
 				<p>这将会下载 monolog 到 <code>vendor/monolog/monolog</code> vendor/monolog/monolog 路径下。</p>
 				<h2 id="autoloading">自动加载<a href="#autoloading" class="anchor">#</a></h2>
 				<p>除了将库文件下载下来之外，Composer还为你准备了一个自动加载文件帮你加载代码库中的类。 使用它只须在你的引导文件中加入如下代码：</p>
-				<pre><code>require 'vendor/autoload.php';
-				</code></pre>
+				<pre><code>require 'vendor/autoload.php';</code></pre>
 				<p>哇唔! 现在就可以使用 monolog 了! 请继续学习Composer的更多内容，请继续阅读 "Basic Usage" 章节。</p>
 				<p class="prev-next"><a href="01-basic-usage.md">Basic Usage</a> &rarr;</p>
 				<p class="fork-and-edit">
