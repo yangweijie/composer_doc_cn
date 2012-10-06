@@ -6,13 +6,13 @@
         <title>Composer</title>
         <meta name="description" content="Dependency Management for PHP">
         <meta name="viewport" content="width=device-width,initial-scale=1">
-        <link rel="stylesheet" href="css/style.css">
-        <script src="js/modernizr-2.0.6.min.js"></script>
+        <link rel="stylesheet" href="../css/style.css">
+        <script src="../js/modernizr-2.0.6.min.js"></script>
     </head>
     <body>
         <div id="container">
             <header>
-				<a href="/">Home</a><a class="" href="/doc/00-intro.md">Getting Started</a><a class="" href="/download/">Download</a><a class="active" href="/doc/">Documentation</a><a class="last" href="http://packagist.org/">Browse Packages</a>                            
+				<a href="/">Home</a><a class="" href="../doc/00-intro.md">Getting Started</a><a class="" href="/download/">Download</a><a class="active" href="/doc/">Documentation</a><a class="last" href="http://packagist.org/">Browse Packages</a>                            
 			</header>
             <div id="main" role="main">
 				<ul class="toc">
