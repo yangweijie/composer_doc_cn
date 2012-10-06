@@ -10,7 +10,7 @@
 
         <link rel="stylesheet" href="/css/style.css?v=5">
 
-        <script src="/js/libs/modernizr-2.0.6.min.js"></script>
+        <script src="/js/modernizr-2.0.6.min.js"></script>
     </head>
 
     <body>
