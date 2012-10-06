@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="zh">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>Composer</title>
         <meta name="description" content="Dependency Management for PHP">
         <meta name="viewport" content="width=device-width,initial-scale=1">
-        <link rel="stylesheet" href="../css/style.css?v=5">
-        <script src="../js/libs/modernizr-2.0.6.min.js"></script>
+        <link rel="stylesheet" href="../css/style.css">
+        <script src="../js/modernizr-2.0.6.min.js"></script>
     </head>
     <body>
         <div id="container">

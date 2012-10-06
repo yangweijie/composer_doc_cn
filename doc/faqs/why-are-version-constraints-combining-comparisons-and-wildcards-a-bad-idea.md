@@ -6,8 +6,8 @@
         <title>Composer</title>
         <meta name="description" content="Dependency Management for PHP">
         <meta name="viewport" content="width=device-width,initial-scale=1">
-        <link rel="stylesheet" href="../css/style.css?v=5">
-        <script src="../js/libs/modernizr-2.0.6.min.js"></script>
+        <link rel="stylesheet" href="../css/style.css">
+        <script src="../js/modernizr-2.0.6.min.js"></script>
     </head>
     <body>
         <div id="container">
