@@ -12,142 +12,117 @@
 		<body>
 				<div id="container">
 						<header>
-							<a href="/">Home</a><a class="" href="/doc/00-intro.md">Getting Started</a><a class="" href="/download/">Download</a><a class="active" href="/doc/">Documentation</a><a class="last" href="http://packagist.org/">Browse Packages</a>                           
+							<a href="/">Home</a><a class="" href="/doc/00-intro.md">开始</a><a class="" href="/download/">Download</a><a class="active" href="/doc/">Documentation</a><a class="last" href="http://packagist.org/">Browse Packages</a>                           
 						</header>
 						<div id="main" role="main">
 							<ul class="toc">
 								<li>
-									<a href="#installation">Installation</a> 
+									<a href="#installation">安装</a> 
 								</li>
 								<li>
-									<a href="#composer-json-project-setup">composer.json: Project Setup</a> 
+									<a href="#composer-json-project-setup">composer.json: 项目启动</a> 
 									<ul>
 										<li>
-											<a href="#the-require-key">The require Key</a> 
+											<a href="#the-require-key">require 键</a> 
 										</li>
 										<li>
-											<a href="#package-names">Package Names</a> 
+											<a href="#package-names">包名称</a> 
 										</li>
 										<li>
-											<a href="#package-versions">Package Versions</a> 
+											<a href="#package-versions">包的版本</a> 
 										</li>
 									</ul>
 								</li>
 								<li>
-									<a href="#installing-dependencies">Installing Dependencies</a> 
+									<a href="#installing-dependencies">安装依赖项</a> 
 								</li>
 								<li>
-									<a href="#composer-lock-the-lock-file">composer.lock - The Lock File</a> 
+									<a href="#composer-lock-the-lock-file">composer.lock - 锁文件</a> 
 								</li>
 								<li>
 									<a href="#packagist">Packagist</a> 
 								</li>
 								<li>
-									<a href="#autoloading">Autoloading</a> 
+									<a href="#autoloading">自动加载</a> 
 								</li>
 							</ul>
-							<h1 id="basic-usage">Basic usage<a href="#basic-usage" class="anchor">#</a></h1>
-							<h2 id="installation">Installation<a href="#installation" class="anchor">#</a></h2>
-							<p>To install Composer, you just need to download the <code>composer.phar</code> executable.</p>
-							<pre><code>$ curl -s http://getcomposer.org/installer | php
-							</code></pre>
-							<p>For the details, see the <a href="00-intro.md">Introduction</a> chapter.</p>
-							<p>To check if Composer is working, just run the PHAR through <code>php</code>:</p>
+							<h1 id="basic-usage">基本用法<a href="#basic-usage" class="anchor">#</a></h1>
+							<h2 id="installation">安装<a href="#installation" class="anchor">#</a></h2>
+							<p>你只须下载 <code>composer.phar</code> 可执行文件，就能安装Composer。</p>
+							<pre><code>$ curl -s http://getcomposer.org/installer | php</code></pre>
+							<p>具体信息，请看 <a href="00-intro.md">安装</a> 章节.</p>
+							<p>为了测试Composer是否运行，只要用 <code>php</code>运行PHAR文件:</p>
 							<pre><code>$ php composer.phar
 							</code></pre>
-							<p>This should give you a list of available commands.</p>
+							<p>这会给你一系列的正确命令。</p>
 							<blockquote>
-								<p><strong>Note:</strong> You can also perform the checks only without downloading Composer
-		by using the <code>--check</code> option. For more information, just use <code>--help</code>.</p>
-								<pre><code>$ curl -s http://getcomposer.org/installer | php -- --help
-								</code></pre>
+								<p><strong>注意：</strong> 你也可以不下载Composer,仅仅通过使用 <code>--check</code> `--check` 选项在线完成上述测试。使用 <code>--help</code>能获得更多信息：</p>
+								<pre><code>$ curl -s http://getcomposer.org/installer | php -- --help</code></pre>
 							</blockquote>
-							<h2 id="composer-json-project-setup"><code>composer.json</code>: Project Setup<a href="#composer-json-project-setup" class="anchor">#</a></h2>
-							<p>To start using Composer in your project, all you need is a <code>composer.json</code>
-file. This file describes the dependencies of your project and may contain
-other metadata as well.</p>
-							<p>The <a href="http://json.org/">JSON format</a> is quite easy to write. It allows you to
-define nested structures.</p>
-							<h3 id="the-require-key">The <code>require</code> Key<a href="#the-require-key" class="anchor">#</a></h3>
-							<p>The first (and often only) thing you specify in <code>composer.json</code> is the
-<code>require</code> key. You're simply telling Composer which packages your project
-depends on.
-							</p>
+							<h2 id="composer-json-project-setup"><code>composer.json</code>: 启动项目<a href="#composer-json-project-setup" class="anchor">#</a></h2>
+							<p>你仅需要一个 <code>composer.json</code>文件就可以在你的项目中使用Composer,这个文件描述了你项目的依赖关系，并且包含一些元数据。</p>
+							<p><a href="http://json.org/">JSON </a> 格式是一种很容易掌握的格式。它允许你使用嵌套的格式描述数据。</p>
+							<h3 id="the-require-key"><code>require</code> 键<a href="#the-require-key" class="anchor">#</a></h3>
+							<p>唯一需要你指定的就是 <code>require</code>键，向 <code>composer.json</code>描述你项目的决定项。</p>
 <pre><code>{
-		"require": {
-				"monolog/monolog": "1.0.*"
-		}
+	"require": {
+		"monolog/monolog": "1.0.*"
+	}
 }
 </code></pre>
-							<p>As you can see, <code>require</code> takes an object that maps <strong>package names</strong> (e.g. <code>monolog/monolog</code>)
-							to <strong>package versions</strong> (e.g. <code>1.0.*</code>).</p>
-							<h3 id="package-names">Package Names<a href="#package-names" class="anchor">#</a></h3>
-							<p>The package name consists of a vendor name and the project's name. Often these
-							will be identical - the vendor name just exists to prevent naming clashes. It allows
-							two different people to create a library named <code>json</code>, which would then just be
-							named <code>igorw/json</code> and <code>seldaek/json</code>.</p>
-							<p>Here we are requiring <code>monolog/monolog</code>, so the vendor name is the same as the
-							project's name. For projects with a unique name this is recommended. It also
-							allows adding more related projects under the same namespace later on. If you
-							are maintaining a library, this would make it really easy to split it up into
-							smaller decoupled parts.</p>
-							<h3 id="package-versions">Package Versions<a href="#package-versions" class="anchor">#</a></h3>
-							<p>We are requiring version <code>1.0.*</code> of monolog. This means any version in the <code>1.0</code>
-							development branch. It would match <code>1.0.0</code>, <code>1.0.2</code> or <code>1.0.20</code>.</p>
-							<p>Version constraints can be specified in a few different ways.</p>
+							<p>正如你所见， <code>require</code> 获得一个从 <strong>package names</strong> (比如这里的 <code>monolog/monolog</code>)
+							映射到<strong>package versions</strong> (比如 <code>1.0.*</code>)的对象。</p>
+							<h3 id="package-names">包名称<a href="#package-names" class="anchor">#</a></h3>
+							<p>这里的包的名称包含开发者名称和项目名称。这地方经常产生冲突，所以加上开发者的名称就是为了防止冲突。
+两个互不相干的人都可以开发一个叫做 <code>json</code>的库，它们可能就是以<code>igorw/json</code> 和 <code>seldaek/json</code>命名的。</p>
+							<p>这里我们需要的是<code>monolog/monolog</code>,所以开发者的名称和项目名称是相同的。我们建议项目使用唯一的名称命名。
+这样的话，以后你还能添加相近的项目到同一名称空间下。如果你维护着一个类库，当你需要将它分解成两个部分时，
+这将使问题变得相当简单。</p>
+							<h3 id="package-versions">包的版本<a href="#package-versions" class="anchor">#</a></h3>
+							<p>我们需要monolog的<code>1.0.*</code> 版，这代表 <code>1.0</code>
+							下的任一版本，包含 <code>1.0.0</code>, <code>1.0.2</code> 或者 <code>1.0.20</code>。</p>
+							<p>版本号可以使用几种不同方式进行约束。</p>
 								<ul>
 									<li>
-										<p><strong>Exact version:</strong> You can specify the exact version of a package, for
-								example <code>1.0.2</code>. This is not used very often, but can be useful.</p>
+										<p><strong>给定版本号:</strong> 你可以指定包的特定版本号，例如<code>1.0.2</code>。这不是很常用，但是有效。</p>
 									</li>
 									<li>
-										<p><strong>Range:</strong> By using comparison operators you can specify ranges of valid
-								versions. Valid operators are <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>!=</code>. An example range
-								would be <code>&gt;=1.0</code>. You can define multiple ranges, separated by a comma:
-								<code>&gt;=1.0,&lt;2.0</code>.
+										<p><strong>给定范围:</strong> 通过使用比较运算符，你可以指定版本号的范围。有效的运算符有:<code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>!=</code>。
+例如<code>&gt;=1.0</code>，你也可以指定多个区间，中间用逗号分隔：
+								<code>&gt;=1.0,&lt;2.0</code>。
 							</p>
 							</li>
 							<li>
-								<p><strong>Wildcard:</strong> You can specify a pattern with a <code>*</code> wildcard. <code>1.0.*</code> is the
-	equivalent of <code>&gt;=1.0,&lt;1.1-dev</code>.
+								<p><strong>通配符：</strong>你可以使用<code>*</code>符号指定一个匹配模式。 <code>1.0.*</code> 相当于<code>&gt;=1.0,&lt;1.1-dev</code>。
 								</p>
 							</li>
-							</ul><h2 id="installing-dependencies">Installing Dependencies<a href="#installing-dependencies" class="anchor">#</a></h2>
-						<p>To fetch the defined dependencies into your local project, just run the
-						<code>install</code> command of <code>composer.phar</code>.</p>
-						<pre><code>$ php composer.phar install
-						</code></pre>
-						<p>This will find the latest version of <code>monolog/monolog</code> that matches the
-						supplied version constraint and download it into the <code>vendor</code> directory.
-						It's a convention to put third party code into a directory named <code>vendor</code>.
-						In case of monolog it will put it into <code>vendor/monolog/monolog</code>.</p>
+							</ul><h2 id="installing-dependencies">安装依赖项<a href="#installing-dependencies" class="anchor">#</a></h2>
+						<p>想要在项目中取得指定的依赖项，只须运行
+						<code>composer.phar</code>的<code>install</code>命令。</p>
+						<pre><code>$ php composer.phar install</code></pre>
+						<p>这将会找到<code>monolog/monolog</code> 的满足指定要求的最新版本，并把它下载到<code>vendor</code>路径下。
+将第三方库放在统一的 <code>vendor</code>.路径下，将给你带来便利。比如讲monolog放在<code>vendor/monolog/monolog</code>中。</p>
 						<blockquote>
-							<p><strong>Tip:</strong> If you are using git for your project, you probably want to add
-							<code>vendor</code> into your <code>.gitignore</code>. You really don't want to add all of that
-							code to your repository.</p>
+							<p><strong>小贴士:</strong> 如果你使用git管理项目代码，你可以将
+							<code>vendor</code> 写进  <code>.gitignore</code>文件中. 你不需要将库代码加到你的repos中。</p>
 						</blockquote>
-						<p>Another thing that the <code>install</code> command does is it adds a <code>composer.lock</code>
-						file into your project root.</p>
-						<h2 id="composer-lock-the-lock-file"><code>composer.lock</code> - The Lock File<a href="#composer-lock-the-lock-file" class="anchor">#</a></h2>
-						<p>After installing the dependencies, Composer writes the list of the exact
-						versions it installed into a <code>composer.lock</code> file. This locks the project
-						to those specific versions.</p>
-						<p><strong>Commit your application's <code>composer.lock</code> (along with <code>composer.json</code>) into version control.</strong></p>
-						<p>This is important because the <code>install</code> command checks if a lock file is present,
-						and if it is, it downloads the versions specified there (regardless of what <code>composer.json</code>
-						says). This means that anyone who sets up the project will download the exact
-						same version of the dependencies.</p>
-						<p>If no <code>composer.lock</code> file exists, Composer will read the dependencies and
-						versions from <code>composer.json</code> and  create the lock file.</p>
-						<p>This means that if any of the dependencies get a new version, you won't get the updates
-						automatically. To update to the new version, use <code>update</code> command. This will fetch
-						the latest matching versions (according to your <code>composer.json</code> file) and also update
-						the lock file with the new version.</p>
+						<p><code>install</code> 命令所做的另一件事是在你项目的根目录下添加了一个叫做<code>composer.lock</code>的文件。</p>
+						<h2 id="composer-lock-the-lock-file"><code>composer.lock</code> - - 锁文件<a href="#composer-lock-the-lock-file" class="anchor">#</a></h2>
+						<p>在安装了依赖项后，Composer将实际安装的版本号写入<code>composer.lock</code> 文件中，这就将项目的依赖项锁定在这些特定的版本中了。</p>
+						<p><strong>提交你项目中的  <code>composer.lock</code> (连同  <code>composer.json</code>) 到版本控制系统中。</strong></p>
+						<p>这点很重要，因为<code>install</code> 命令会确认这个锁文件是否存在，如果存在的话，Composer就会安装这里面
+指定的版本号下载相应的对应项（忽略<code>composer.json</code>
+						中的申明）。这意味着，其他任何人部署项目时
+都会下载一样的版本。</p>
+						<p>如果没有<code>composer.lock</code>文件的存在，Composer会从<code>composer.json</code>读取依赖项以及各种的版本号，
+并生成锁文件。</p>
+						<p>这也意味着，任何一个依赖项有更新，你不会自动得到最新版本。想要得到最新版，请用<code>update</code> 命令。
+这将取得最新的匹配版本（根据 <code>composer.json</code>中定义的版本号）并且同时更新锁文件。</p>
 						<pre><code>$ php composer.phar update
 						</code></pre>
 						<blockquote>
-							<p><strong>Note:</strong> For libraries it is not necessarily recommended to commit the lock file,
-							see also: <a href="02-libraries.md#lock-file">Libraries - Lock file</a>.</p>
+							<p><strong>注意:</strong> 对于类库，不推荐将锁文件签入版本库,
+							请阅读： <a href="02-libraries.md#lock-file">库文件 - 锁文件</a>.</p>
 						</blockquote>
 						<h2 id="packagist">Packagist<a href="#packagist" class="anchor">#</a></h2>
 						<p><a href="http://packagist.org/">Packagist</a> is the main Composer repository. A Composer
@@ -176,11 +151,11 @@ depends on.
 						<p>You can even add your own code to the autoloader by adding an <code>autoload</code> field
 						to <code>composer.json</code>.</p>
 						<pre><code>{
-								"autoload": {
-										"psr-0": {"Acme": "src/"}
-								}
-						}
-						</code></pre>
+	"autoload": {
+		"psr-0": {"Acme": "src/"}
+	}
+}
+</code></pre>
 						<p>Composer will register a
 						<a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md">PSR-0</a>
 						autoloader for the <code>Acme</code> namespace.</p>
@@ -203,9 +178,9 @@ depends on.
 							that one, you can just include <code>vendor/composer/autoload_namespaces.php</code>,
 							which returns an associative array mapping namespaces to directories.</p>
 						</blockquote>
-						<p class="prev-next">&larr; <a href="00-intro.md">Intro</a>  |  <a href="02-libraries.md">Libraries</a> &rarr;</p>
+						<p class="prev-next">&larr; <a href="00-intro.md">简介</a>  |  <a href="02-libraries.md">版本库</a> &rarr;</p>
 						<p class="fork-and-edit">
-								Found a typo? Something is wrong in this documentation? Just <a href="http://github.com/composer/composer/edit/master/doc/01-basic-usage.md">fork and edit</a> it!
+								找到一个错字?文档有错?只要<a href="http://github.com/composer/composer/edit/master02-libraries.md">fork和edit</a>它!
 						</p>
 					</div>
 					<footer></footer>
