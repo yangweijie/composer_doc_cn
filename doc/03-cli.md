@@ -20,7 +20,7 @@
 						<a href="#init">init</a> 
 						<ul>
 							<li>
-								<a href="#options">Options</a> 
+								<a href="#options">选项</a> 
 							</li>
 						</ul>
 					</li>
@@ -28,7 +28,7 @@
 						<a href="#install">install</a> 
 						<ul>
 							<li>
-								<a href="#options-2">Options</a> 
+								<a href="#options-2">选项</a> 
 							</li>
 						</ul>
 					</li>
@@ -36,7 +36,7 @@
 						<a href="#update">update</a> 
 						<ul>
 							<li>
-								<a href="#options-3">Options</a> 
+								<a href="#options-3">选项</a> 
 							</li>
 						</ul>
 					</li>
@@ -44,7 +44,7 @@
 						<a href="#require">require</a> 
 						<ul>
 							<li>
-								<a href="#options-4">Options</a> 
+								<a href="#options-4">选项</a> 
 							</li>
 						</ul>
 					</li>
@@ -55,7 +55,7 @@
 						<a href="#show">show</a> 
 						<ul>
 							<li>
-								<a href="#options-5">Options</a> 
+								<a href="#options-5">选项</a> 
 							</li>
 						</ul>
 					</li>
@@ -63,7 +63,7 @@
 						<a href="#depends">depends</a> 
 						<ul>
 							<li>
-								<a href="#options-6">Options</a> 
+								<a href="#options-6">选项</a> 
 							</li>
 						</ul>
 					</li>
@@ -77,7 +77,7 @@
 						<a href="#create-project">create-project</a> 
 						<ul>
 							<li>
-								<a href="#options-7">Options</a> 
+								<a href="#options-7">选项</a> 
 							</li>
 						</ul>
 					</li>
@@ -85,7 +85,7 @@
 						<a href="#dump-autoload">dump-autoload</a> 
 						<ul>
 							<li>
-								<a href="#options-8">Options</a> 
+								<a href="#options-8">选项</a> 
 							</li>
 						</ul>
 					</li>
@@ -124,37 +124,29 @@
 						</ul>
 					</li>
 				</ul>
-				<h1 id="command-line-interface">Command-line interface<a href="#command-line-interface" class="anchor">#</a></h1>
-				<p>You've already learned how to use the command-line interface to do some
-					things. This chapter documents all the available commands.</p>
+				<h1 id="command-line-interface">命令行交互<a href="#command-line-interface" class="anchor">#</a></h1>
+				<p>你已经学了如何使用命令行交互来完成一些事.本章节说明了所有可用命令的文档.</p>
 				<h2 id="init">init<a href="#init" class="anchor">#</a></h2>
-				<p>In the <a href="02-libraries.md">Libraries</a> chapter we looked at how to create a
-					<code>composer.json</code> by hand. There is also an <code>init</code> command available that makes
-					it a bit easier to do this.</p>
-				<p>When you run the command it will interactively ask you to fill in the fields,
-					while using some smart defaults.</p>
+				<p>在<a href="02-libraries.md">版本库</a>章节中我们看了如何亲自创建一个
+					<code>composer.json</code>.这里也有一个<code>init</code>命令可用更容易做到.</p>
+				<p>当你运行命令它会交互的让你填上对应的字段,有时会智能的使用一些默认值.</p>
 				<pre><code>$ php composer.phar init
 </code></pre>
 				<h3 id="options">Options<a href="#options" class="anchor">#</a></h3>
-				<ul><li><strong>--no-interaction:</strong> (<strong>-n</strong>) Run the command in non-interactive mode.
-						The rest of these options only make sense when you are in this mode.</li>
-					<li><strong>--name:</strong> Name of the package.</li>
-					<li><strong>--description:</strong> Description of the package.</li>
-					<li><strong>--author:</strong> Author name of the package.</li>
-					<li><strong>--homepage:</strong> Homepage of the package.</li>
-					<li><strong>--require:</strong> Package to require with a version constraint. Should be
-						in format <code>foo/bar:1.0.0</code>.</li>
-					<li><strong>--require-dev:</strong> Development requirements, see <strong>--require</strong>.</li>
+				<ul><li><strong>--no-interaction:</strong> (<strong>-n</strong>)运行命令以非交互模式.
+						剩下的那些选项只有在这个模式里才会起作用.</li>
+					<li><strong>--name:</strong>包的名字.</li>
+					<li><strong>--description:</strong>包描述.</li>
+					<li><strong>--author:</strong>包作者.</li>
+					<li><strong>--homepage:</strong>包主页.</li>
+					<li><strong>--require:</strong> 要引入的有版本约束的包.应当符合以下格式<code>foo/bar:1.0.0</code>.</li>
+					<li><strong>--require-dev:</strong>开发版要求,见<strong>--require</strong>.</li>
 				</ul><h2 id="install">install<a href="#install" class="anchor">#</a></h2>
-				<p>The <code>install</code> command reads the <code>composer.json</code> file from the current
-					directory, resolves the dependencies, and installs them into <code>vendor</code>.</p>
+				<p>The <code>install</code>命令读取<code>composer.json</code>文件在当前目录,解决了依赖关系,并且安装他们到<code>vendor</code>.</p>
 				<pre><code>$ php composer.phar install
 </code></pre>
-				<p>If there is a <code>composer.lock</code> file in the current directory, it will use the
-					exact versions from there instead of resolving them. This ensures that
-					everyone using the library will get the same versions of the dependencies.</p>
-				<p>If there is no <code>composer.lock</code> file, composer will create one after dependency
-					resolution.</p>
+				<p>如果当前目录里有一个<code>composer.lock</code>文件,他将会使用使用确切的版本而不是解析它们.这个保证了每个人使用库得到同样的版本依赖.</p>
+				<p>如果没有<code>composer.lock</code>文件,composer将会在解决依赖后创建一个.</p>
 				<h3 id="options-2">Options<a href="#options-2" class="anchor">#</a></h3>
 				<ul>
 					<li>
