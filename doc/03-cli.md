@@ -150,67 +150,54 @@
 				<h3 id="options-2">Options<a href="#options-2" class="anchor">#</a></h3>
 				<ul>
 					<li>
-						<strong>--prefer-source:</strong> There are two ways of downloading a package: <code>source</code>
-						and <code>dist</code>. For stable versions composer will use the <code>dist</code> by default.
-						The <code>source</code> is a version control repository. If <code>--prefer-source</code> is
-						enabled, composer will install from <code>source</code> if there is one. This is
-						useful if you want to make a bugfix to a project and get a local git
-						clone of the dependency directly.
+						<strong>--prefer-source:</strong>有两种下载一个包的途径: <code>source</code>
+						and <code>dist</code>. 对于稳定版本的composer将会默认使用<code>dist</code>.
+						<code>source</code>是一个版本控制库的源.如果<code>--prefer-source</code>启用了, 如果有的话composer将会从<code>source</code>安装.这是很有用的如果你想给项目做一个bugfix和直接从依赖中获取一个本地git clone.
 					</li>
-					<li><strong>--dry-run:</strong> If you want to run through an installation without actually
-						installing a package, you can use <code>--dry-run</code>. This will simulate the
-						installation and show you what would happen.</li>
-					<li><strong>--dev:</strong> By default composer will only install required packages. By
-						passing this option you can also make it install packages referenced by
-						<code>require-dev</code>.</li>
-					<li><strong>--no-scripts:</strong> Skips execution of scripts defined in <code>composer.json</code>.</li>
+					<li><strong>--dry-run:</strong>如果你想要演示一个安装过程但实际上不是真的安装一个包,你可以使用<code>--dry-run</code>. 这个将模拟安装并显示什么将会发生.</li>
+					<li><strong>--dev:</strong> 默认的composer将只会安装要求的包.通过传这个选项你也可以安装
+						<code>require-dev</code>提供的包.</li>
+					<li><strong>--no-scripts:</strong>跳过执行<code>composer.json</code>中定义脚本.</li>
 				</ul>
 				<h2 id="update">update<a href="#update" class="anchor">#</a></h2>
-				<p>In order to get the latest versions of the dependencies and to update the
-					<code>composer.lock</code> file, you should use the <code>update</code> command.</p>
+				<p>为了获取最新的依赖版本并且去更新
+					<code>composer.lock</code> 文件,你应该用<code>update</code>命令.</p>
 				<pre><code>$ php composer.phar update
 </code></pre>
-				<p>This will resolve all dependencies of the project and write the exact versions
-					into <code>composer.lock</code>.</p>
-				<p>If you just want to update a few packages and not all, you can list them as such:</p>
+				<p>这个将会解决所有项目的依赖关系然后把精确的版本写入到<code>composer.lock</code>.</p>
+				<p>如果你只是想升级一些包并不是全部,你可以全列出他们:</p>
 				<pre><code>$ php composer.phar update vendor/package vendor/package2
 </code></pre>
-				<h3 id="options-3">Options<a href="#options-3" class="anchor">#</a></h3>
+				<h3 id="options-3">选项<a href="#options-3" class="anchor">#</a></h3>
 				<ul>
-					<li><strong>--prefer-source:</strong> Install packages from <code>source</code> when available.</li>
-					<li><strong>--dry-run:</strong> Simulate the command without actually doing anything.</li>
-					<li><strong>--dev:</strong> Install packages listed in <code>require-dev</code>.</li>
-					<li><strong>--no-scripts:</strong> Skips execution of scripts defined in <code>composer.json</code>.</li>
+					<li><strong>--prefer-source:</strong> 安装包从可用<code>source</code>.</li>
+					<li><strong>--dry-run:</strong>模拟命令实际不做任何事 .</li>
+					<li><strong>--dev:</strong> 安装在<code>require-dev</code>中列出的包.</li>
+					<li><strong>--no-scripts:</strong>跳过执行<code>composer.json</code>中定义脚本.</li>
 				</ul>
 				<h2 id="require">require<a href="#require" class="anchor">#</a></h2>
-				<p>The <code>require</code> command adds new packages to the <code>composer.json</code> file from
-					the current directory.</p>
+				<p>The <code>require</code>命令从当前目录中添加新的包到<code>composer.json</code>文件中.</p>
 				<pre><code>$ php composer.phar require
 </code></pre>
-				<p>After adding/changing the requirements, the modified requirements will be
-					installed or updated.</p>
-				<p>If you do not want to choose requirements interactively, you can just pass them
-					to the command.</p>
+				<p>在添加/修改要求,修改过的要求将会被安装或更新.</p>
+				<p>如果你不想交互的方式选择要求,你可以在命令中传递它们.</p>
 				<pre><code>$ php composer.phar require vendor/package:2.* vendor/package2:dev-master
 </code></pre>
-				<h3 id="options-4">Options<a href="#options-4" class="anchor">#</a></h3>
+				<h3 id="options-4">选项<a href="#options-4" class="anchor">#</a></h3>
 				<ul>
-					<li><strong>--prefer-source:</strong> Install packages from <code>source</code> when available.</li>
-					<li><strong>--dev:</strong> Add packages to <code>require-dev</code>.</li>
+					<li><strong>--prefer-source:</strong>安装包从可用<code>source</code>.</li>
+					<li><strong>--dev:</strong> 添加包到<code>require-dev</code>.</li>
 				</ul>
 				<h2 id="search">search<a href="#search" class="anchor">#</a></h2>
-				<p>The search command allows you to search through the current project's package
-					repositories. Usually this will be just packagist. You simply pass it the
-					terms you want to search for.</p>
+				<p>search命令允许你在项目包版本库中搜索. 通常这个将只会在packagist. 你可以简单传递你想搜索的模式.</p>
 				<pre><code>$ php composer.phar search monolog
 </code></pre>
-				<p>You can also search for more than one term by passing multiple arguments.</p>
+				<p>你也可搜索多个通过传递多个参数.</p>
 				<h2 id="show">show<a href="#show" class="anchor">#</a></h2>
-				<p>To list all of the available packages, you can use the <code>show</code> command.</p>
+				<p>要列出所有可用包,你可以使用<code>show</code>命令.</p>
 				<pre><code>$ php composer.phar show
 </code></pre>
-				<p>If you want to see the details of a certain package, you can pass the package
-					name.</p>
+				<p>如果你想要查看一个包的所有细节,你可以传递包的名称.</p>
 				<pre><code>$ php composer.phar show monolog/monolog
 name     : monolog/monolog
 versions : master-dev, 1.0.2, 1.0.1, 1.0.0, 1.0.0-RC1
@@ -227,19 +214,17 @@ Monolog : src/
 requires
 php &gt;=5.3.0
 </code></pre>
-				<p>You can even pass the package version, which will tell you the details of that
-					specific version.</p>
+				<p>你可以甚至传递包版本,这样它会告诉你那个指定版本的细节.</p>
 				<pre><code>$ php composer.phar show monolog/monolog 1.0.2
 </code></pre>
-				<h3 id="options-5">Options<a href="#options-5" class="anchor">#</a></h3>
+				<h3 id="options-5">选项<a href="#options-5" class="anchor">#</a></h3>
 				<ul>
-					<li><strong>--installed:</strong> Will list the packages that are installed.</li>
+					<li><strong>--installed:</strong>将会列出已装的包.</li>
 					<li><strong>--platform:</strong> Will list only platform packages (php &amp; extensions).</li>
 				</ul>
 				<h2 id="depends">depends<a href="#depends" class="anchor">#</a></h2>
-				<p>The <code>depends</code> command tells you which other packages depend on a certain
-					package. You can specify which link types (<code>require</code>, <code>require-dev</code>)
-					should be included in the listing. By default both are used.</p>
+				<p><code>depends</code>命令告诉你一个确定包依赖哪些其他的包.你可以指定链接类型(<code>require</code>, <code>require-dev</code>)
+					在列表中应当包含的.默认的两个都是用.</p>
 				<pre><code>$ php composer.phar depends --link-type=require monolog/monolog
 nrk/monolog-fluent
 poc/poc
@@ -247,29 +232,28 @@ propel/propel
 symfony/monolog-bridge
 symfony/symfony
 </code></pre>
-				<h3 id="options-6">Options<a href="#options-6" class="anchor">#</a></h3>
+				<h3 id="options-6">选项<a href="#options-6" class="anchor">#</a></h3>
 				<ul>
-					<li><strong>--link-type:</strong> The link types to match on, can be specified multiple
-						times.</li>
+					<li><strong>--link-type:</strong> 匹配的链接类型,可被指定多个.</li>
 				</ul>
 				<h2 id="validate">validate<a href="#validate" class="anchor">#</a></h2>
-				<p>You should always run the <code>validate</code> command before you commit your
-					<code>composer.json</code> file, and before you tag a release. It will check if your
-					<code>composer.json</code> is valid.</p>
+				<p>你应当一直运行<code>validate</code>命令在你提交
+					<code>composer.json</code>文件,和在你标签一个发布.他将会检测是否你的
+					<code>composer.json</code>合法.</p>
 				<pre><code>$ php composer.phar validate
 </code></pre>
 				<h2 id="self-update">self-update<a href="#self-update" class="anchor">#</a></h2>
-				<p>To update composer itself to the latest version, just run the <code>self-update</code>
-					command. It will replace your <code>composer.phar</code> with the latest version.</p>
+				<p>要升级composer自身到最新的版本,只要运行<code>self-update</code>
+					命令.它将会替换你的<code>composer.phar</code>为最新版本.</p>
 				<pre><code>$ php composer.phar self-update
 </code></pre>
-				<p>If you have installed composer for your entire system (see <a href="00-intro.md#globally">global installation</a>),
-					you have to run the command with <code>root</code> privileges</p>
+				<p>如果你已经安装了composer为你整个系统(see <a href="00-intro.md#globally">全局安装</a>),
+					你不得不安装以<code>root</code>权限运行命令</p>
 				<pre><code>$ sudo composer self-update
 </code></pre>
 				<h2 id="create-project">create-project<a href="#create-project" class="anchor">#</a></h2>
-				<p>You can use Composer to create new projects from an existing package.
-					There are several applications for this:</p>
+				<p>你可以用Composer来创建新的项目通过一个已存在的包.
+					有几个用此的应用:</p>
 				<ol>
 					<li>You can deploy application packages.</li>
 					<li>You can check out any package and start developing on patches for example.</li>
