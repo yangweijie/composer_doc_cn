@@ -255,25 +255,21 @@ symfony/symfony
 				<p>你可以用Composer来创建新的项目通过一个已存在的包.
 					有几个用此的应用:</p>
 				<ol>
-					<li>You can deploy application packages.</li>
-					<li>You can check out any package and start developing on patches for example.</li>
-					<li>Projects with multiple developers can use this feature to bootstrap the
-						initial application for development.</li>
+					<li>你可以部署应用包.</li>
+					<li>举个例子你可以检出任何包并且开发补丁包.</li>
+					<li>多人开发的项目可以使用此特性加速应用开发的初始化.</li>
 				</ol>
-				<p>To create a new project using composer you can use the "create-project" command.
-					Pass it a package name, and the directory to create the project in. You can also
-					provide a version as third argument, otherwise the latest version is used.</p>
-				<p>The directory is not allowed to exist, it will be created during installation.</p>
+				<p>要使用composer创建一个新项目你可以使用"create-project"命令.
+					传一个包名称,还有创建项目的目录. 你可以提供一个版本作为第3个参数,否则使用最新版.</p>
+				<p>目录不存在的话,安装时会自动被创建.</p>
 				<pre><code>php composer.phar create-project doctrine/orm path 2.2.0
 </code></pre>
-				<p>By default the command checks for the packages on packagist.org.</p>
+				<p>默认命令检测packagist.org上的包.</p>
 				<h3 id="options-7">Options<a href="#options-7" class="anchor">#</a></h3>
-				<ul><li><strong>--repository-url:</strong> Provide a custom repository to search for the package,
-						which will be used instead of packagist. Can be either an HTTP URL pointing
-						to a <code>composer</code> repository, or a path to a local <code>packages.json</code> file.</li>
-					<li><strong>--prefer-source:</strong> Get a development version of the code checked out
-						from version control.</li>
-					<li><strong>--dev:</strong> Install packages listed in <code>require-dev</code>.</li>
+				<ul><li><strong>--repository-url:</strong> 提供一个定制的版本库来搜索包,
+						将会替换packagist. 既可以是一个HTTP URL指向一个<code>composer</code>版本库,或者一个路径指向一个本地<code>packages.json</code>文件.</li>
+					<li><strong>--prefer-source:</strong> 从版本控制中获取开发版代码.</li>
+					<li><strong>--dev:</strong> 安装列在<code>require-dev</code>中的包.</li>
 				</ul><h2 id="dump-autoload">dump-autoload<a href="#dump-autoload" class="anchor">#</a></h2>
 				<p>If you need to update the autoloader because of new classes in a classmap
 					package for example, you can use "dump-autoload" to do that without having to
