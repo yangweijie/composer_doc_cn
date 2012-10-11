@@ -271,9 +271,7 @@ symfony/symfony
 					<li><strong>--prefer-source:</strong> 从版本控制中获取开发版代码.</li>
 					<li><strong>--dev:</strong> 安装列在<code>require-dev</code>中的包.</li>
 				</ul><h2 id="dump-autoload">dump-autoload<a href="#dump-autoload" class="anchor">#</a></h2>
-				<p>If you need to update the autoloader because of new classes in a classmap
-					package for example, you can use "dump-autoload" to do that without having to
-					go through an install or update.</p>
+				<p>如果你需要个更新autoloader因为一个类映射包内有新的类了,你可以使用"dump-autoload"来完成那个而不是使用安装或者更新.（ps：以下未理解就不翻译了）</p>
 				<p>Additionally, it can dump an optimized autoloader that converts PSR-0 packages
 					into classmap ones for performance reasons. In large applications with many
 					classes, the autoloader can take up a substantial portion of every request's
@@ -285,58 +283,47 @@ symfony/symfony
 						autoloader. This is recommended especially for production, but can take
 						a bit of time to run so it is currently not done by default.</li>
 				</ul><h2 id="help">help<a href="#help" class="anchor">#</a></h2>
-				<p>To get more information about a certain command, just use <code>help</code>.</p>
+				<p>要获得更多某个命令的详细信息就用<code>help</code>.</p>
 				<pre><code>$ php composer.phar help install
 </code></pre>
-				<h2 id="environment-variables">Environment variables<a href="#environment-variables" class="anchor">#</a></h2>
-				<p>You can set a number of environment variables that override certain settings.
-					Whenever possible it is recommended to specify these settings in the <code>config</code>
-					section of <code>composer.json</code> instead. It is worth noting that that the env vars
-					will always take precedence over the values specified in <code>composer.json</code>.</p>
+				<h2 id="environment-variables">环境变量<a href="#environment-variables" class="anchor">#</a></h2>
+				<p>你可以设置一些环境变量覆盖一些配置.
+					尽可能的情况下推荐指定这些配置在<code>composer.json</code><code>config</code>
+					部分而不是设置环境变量.值得注意的是env vars（环境变量）
+					总是优先覆盖指定在<code>composer.json</code>中的值.</p>
 				<h3 id="composer">COMPOSER<a href="#composer" class="anchor">#</a></h3>
-				<p>By setting the <code>COMPOSER</code> env variable it is possible to set the filename of
-					<code>composer.json</code> to something else.</p>
-				<p>For example:</p>
+				<p>通过指定<code>COMPOSER</code> 环境变量可以指定<code>composer.json</code>文件名为其他的.</p>
+				<p>举个例子:</p>
 				<pre><code>$ COMPOSER=composer-other.json php composer.phar install
 </code></pre>
 				<h3 id="composer-root-version">COMPOSER_ROOT_VERSION<a href="#composer-root-version" class="anchor">#</a></h3>
-				<p>By setting this var you can specify the version of the root package, if it can
-					not be guessed from VCS info and is not present in <code>composer.json</code>.</p>
+				<p>通过设置这个变量你可以指定root包的版本,如果它不能通过VCS猜到还有没有在<code>composer.json</code>指定.</p>
 				<h3 id="composer-vendor-dir">COMPOSER_VENDOR_DIR<a href="#composer-vendor-dir" class="anchor">#</a></h3>
-				<p>By setting this var you can make composer install the dependencies into a
-					directory other than <code>vendor</code>.</p>
+				<p>通过设置这个变量你可以使composer安装依赖到一个目录而不是总是<code>vendor</code>.</p>
 				<h3 id="composer-bin-dir">COMPOSER_BIN_DIR<a href="#composer-bin-dir" class="anchor">#</a></h3>
-				<p>By setting this option you can change the <code>bin</code> (<a href="articles/vendor-bins.md">Vendor Bins</a>)
-					directory to something other than <code>vendor/bin</code>.</p>
+				<p>通过设置这个选项你可以改变<code>bin</code> (<a href="articles/vendor-bins.md">Vendor Bins</a>)
+					目录到其他的目录而不是<code>vendor/bin</code>.</p>
 				<h3 id="http-proxy-or-http-proxy">http_proxy or HTTP_PROXY<a href="#http-proxy-or-http-proxy" class="anchor">#</a></h3>
-				<p>If you are using composer from behind an HTTP proxy, you can use the standard
-					<code>http_proxy</code> or <code>HTTP_PROXY</code> env vars. Simply set it to the URL of your proxy.
-					Many operating systems already set this variable for you.</p>
-				<p>Using <code>http_proxy</code> (lowercased) or even defining both might be preferable since
-					some tools like git or curl will only use the lower-cased <code>http_proxy</code> version.
-					Alternatively you can also define the git proxy using
+				<p>如果你整用HTTP proxy访问composer你可以使用基本的
+					<code>http_proxy</code>或<code>HTTP_PROXY</code>环境变量.简单的设置它为你的代理的URL.
+					许多操作系统已经为你设好了这个变量.</p>
+				<p>最好使用<code>http_proxy</code> (小写)甚至2个都定义因为一些工具比如git或curl将只是用小写的<code>http_proxy</code>版本.
+					相反你可以指定git proxy通过
 					<code>git config --global http.proxy &lt;proxy url&gt;</code>.</p>
 				<h3 id="composer-home">COMPOSER_HOME<a href="#composer-home" class="anchor">#</a></h3>
-				<p>The <code>COMPOSER_HOME</code> var allows you to change the composer home directory. This
-					is a hidden, global (per-user on the machine) directory that is shared between
-					all projects.</p>
-				<p>By default it points to <code>/home/&lt;user&gt;/.composer</code> on *nix,
-					<code>/Users/&lt;user&gt;/.composer</code> on OSX and
-					<code>C:\Users\&lt;user&gt;\AppData\Roaming\Composer</code> on Windows.</p>
+				<p><code>COMPOSER_HOME</code>变量允许你改变composer home目录.它是一个隐藏的全局(该机器上所有用户) 所有项目共享的目录.</p>
+				<p>默认的它指向到<code>/home/&lt;user&gt;/.composer</code> 在 *nix,
+					<code>/Users/&lt;user&gt;/.composer</code> 在OSX and
+					<code>C:\Users\&lt;user&gt;\AppData\Roaming\Composer</code> 在Windows.</p>
 				<h4 id="composer-home-config-json">COMPOSER_HOME/config.json<a href="#composer-home-config-json" class="anchor">#</a></h4>
-				<p>You may put a <code>config.json</code> file into the location which <code>COMPOSER_HOME</code> points
-					to. Composer will merge this configuration with your project's <code>composer.json</code>
-					when you run the <code>install</code> and <code>update</code> commands.</p>
-				<p>This file allows you to set <a href="04-schema.md#config">configuration</a> and
-					<a href="05-repositories.md">repositories</a> for the user's projects.</p>
-				<p>In case global configuration matches <em>local</em> configuration, the <em>local</em>
-					configuration in the project's <code>composer.json</code> always wins.</p>
+				<p>你可以放一个<code>config.json</code>文件到<code>COMPOSER_HOME</code> 指向的位置. Composer 将会把它和你的项目的<code>composer.json</code>合并当你运行<code>install</code>和<code>update</code>命令时.</p>
+				<p>该文件允许你为用户的项目设置<a href="04-schema.md#config">配置</a>和<a href="05-repositories.md">版本库</a>.</p>
+				<p>在全局配置和<em>local</em>配置冲突时,项目中的<em>local</em>配置<code>composer.json</code> 总是赢.</p>
 				<h3 id="composer-process-timeout">COMPOSER_PROCESS_TIMEOUT<a href="#composer-process-timeout" class="anchor">#</a></h3>
-				<p>This env var controls the time composer waits for commands (such as git
-					commands) to finish executing. The default value is 300 seconds (5 minutes).</p>
-				<p class="prev-next">&larr; <a href="02-libraries.md">Libraries</a>  |  <a href="04-schema.md">Schema</a> &rarr;</p>
+				<p>这个环境变量控制着composer等待命令(比如git命令)的时间后完成执行.默认值是300秒 (5分钟).</p>
+				<p class="prev-next">&larr; <a href="02-libraries.md">库</a>  |  <a href="04-schema.md">Schema</a> &rarr;</p>
 				<p class="fork-and-edit">
-					Found a typo? Something is wrong in this documentation? Just <a href="http://github.com/composer/composer/edit/master/doc/03-cli.md">fork and edit</a> it!
+					找到一个错字?文档有错?只要<a href="http://github.com/composer/composer/edit/master02-libraries.md">fork和edit</a>它!
 				</p>
 			</div>
 			<footer></footer>
