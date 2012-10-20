@@ -111,39 +111,32 @@
 				<h1 id="composer-json">composer.json<a href="#composer-json" class="anchor">#</a></h1>
 				<p>本章节将会解释所有在<code>composer.json</code>中可用的字段.</p>
 				<h2 id="json-schema">JSON模式<a href="#json-schema" class="anchor">#</a></h2>
-				<p>我们有一个<a href="http://json-schema.org">JSON模式</a>说明了json格式并且可以被用来验证你的<code>composer.json</code>. In fact, it is used by the
-					<code>validate</code> command. You can find it at:
-					<a href="https://github.com/composer/composer/blob/master/res/composer-schema.json"><code>res/composer-schema.json</code></a>.</p>
-				<h2 id="root-package">Root Package<a href="#root-package" class="anchor">#</a></h2>
-				<p>The root package is the package defined by the <code>composer.json</code> at the root of
-					your project. It is the main <code>composer.json</code> that defines your project
-					requirements.</p>
-				<p>Certain fields only apply when in the root package context. One example of
-					this is the <code>config</code> field. Only the root package can define configuration.
-					The config of dependencies is ignored. This makes the <code>config</code> field
-					<code>root-only</code>.</p>
-				<p>If you clone one of those dependencies to work on it, then that package is the
-					root package. The <code>composer.json</code> is identical, but the context is different.</p>
+				<p>我们有一个<a href="http://json-schema.org">JSON模式</a>说明了json格式并且可以被用来验证你的<code>composer.json</code>. 实际上，他被用在<code>validate</code>命令上. 你可以在:
+					<a href="https://github.com/composer/composer/blob/master/res/composer-schema.json"><code>res/composer-schema.json</code>上找到介绍</a>.</p>
+				<h2 id="root-package">Root包<a href="#root-package" class="anchor">#</a></h2>
+				<p>Root包是<code>composer.json</code>中定义在根项目的包. 它是<code>composer.json</code>定义你的项目的首要要求.</p>
+				<p>某些字段只适用于Root包.其中的一个例子是<code>config</code>字段.只有Root包可以定义configuration.
+					config的依赖是被忽略的. 这使得<code>config</code>字段<code>root-only</code>.</p>
+				<p>如果只想克隆那些依赖的其中一个，那么那个包是Root包. <code>composer.json</code>是相同的,但是上下文是不同的.</p>
 				<blockquote>
-					<p><strong>Note:</strong> A package can be the root package or not, depending on the context.
-						For example, if your project depends on the <code>monolog</code> library, your project
-						is the root package. However, if you clone <code>monolog</code> from GitHub in order to
-						fix a bug in it, then <code>monolog</code> is the root package.</p>
+					<p>
+						<strong>注意:</strong>一个包能不能成为root包,由上下文决定.
+						举个例子,如果你的项目依赖<code>monolog</code>库,你的项目是root包。但是如果你克隆<code>monolog</code>从Github上是为了修复其中的一个bug,那么<code>monolog</code>是root包.
+					</p>
 				</blockquote>
-				<h2 id="properties">Properties<a href="#properties" class="anchor">#</a></h2>
+				<h2 id="properties">属性<a href="#properties" class="anchor">#</a></h2>
 				<h3 id="name">name<a href="#name" class="anchor">#</a></h3>
-				<p>The name of the package. It consists of vendor name and project name,
-					separated by <code>/</code>.</p>
-				<p>Examples:</p>
+				<p>包的名字.它由vendor名和项目组成,之间用<code>/</code>分割.</p>
+				<p>例子:</p>
 				<ul><li>monolog/monolog</li>
 					<li>igorw/event-source</li>
-				</ul><p>Required for published packages (libraries).</p>
+				</ul><p>对于发布的包(库) 必须.</p>
 				<h3 id="description">description<a href="#description" class="anchor">#</a></h3>
-				<p>A short description of the package. Usually this is just one line long.</p>
-				<p>Required for published packages (libraries).</p>
+				<p>一个包的简短描述. 通常这个最多一行.</p>
+				<p>对于发布的包(库) 必须.</p>
 				<h3 id="version">version<a href="#version" class="anchor">#</a></h3>
-				<p>The version of the package.</p>
-				<p>This must follow the format of <code>X.Y.Z</code> with an optional suffix of <code>-dev</code>,
+				<p>包的版本.</p>
+				<p>这个必须按照<code>X.Y.Z</code>的格式组多有一个可选的后缀像<code>-dev</code>,
 					<code>-alphaN</code>, <code>-betaN</code> or <code>-RCN</code>.</p>
 				<p>Examples:</p>
 				<pre><code>1.0.0
@@ -155,53 +148,40 @@
 1.0.0-beta2
 1.0.0-RC5
 </code></pre>
-				<p>Optional if the package repository can infer the version from somewhere, such
-					as the VCS tag name in the VCS repository. In that case it is also recommended
-					to omit it.</p>
+				<p>可选的如果包版本库可以从某处得出版本信息,比如VCS版本库中的VCS tag名.在那种情况下，我们也推荐忽略它.</p>
 				<blockquote>
-					<p><strong>Note:</strong> Packagist uses VCS repositories, so the statement above is very
-						much true for Packagist as well. Specifying the version yourself will
-						most likely end up creating problems at some point due to human error.</p>
+					<p><strong>注意:</strong> Packagist 使用 VCS repositories,因此上面的话同样对于Packagist也是非常正确的. 自己指定版本将极有可能出现由于某处的人为失误导致问题.</p>
 				</blockquote>
 				<h3 id="type">type<a href="#type" class="anchor">#</a></h3>
-				<p>The type of the package. It defaults to <code>library</code>.</p>
-				<p>Package types are used for custom installation logic. If you have a package
-					that needs some special logic, you can define a custom type. This could be a
-					<code>symfony-bundle</code>, a <code>wordpress-plugin</code> or a <code>typo3-module</code>. These types will
-					all be specific to certain projects, and they will need to provide an
-					installer capable of installing packages of that type.</p>
-				<p>Out of the box, composer supports three types:</p>
-				<ul><li><strong>library:</strong> This is the default. It will simply copy the files to <code>vendor</code>.</li>
-					<li><strong>metapackage:</strong> An empty package that contains requirements and will trigger
-						their installation, but contains no files and will not write anything to the
-						filesystem. As such, it does not require a dist or source key to be
-						installable.</li>
-					<li><strong>composer-installer:</strong> A package of type <code>composer-installer</code> provides an
-						installer for other packages that have a custom type. Read more in the
-						<a href="articles/custom-installers.md">dedicated article</a>.</li>
-				</ul><p>Only use a custom type if you need custom logic during installation. It is
-					recommended to omit this field and have it just default to <code>library</code>.</p>
+				<p>包的类型.默认是<code>library</code>.</p>
+				<p>包的类型是用来定制安装逻辑的.如果你有一个包需要一些特定的逻辑,你可以定义一个特定的type.这个可以是一个
+					<code>symfony-bundle</code>, 一个<code>wordpress-plugin</code> 或者一个<code>typo3-module</code>. 这些类型将会被指定到确定的项目, 并且他们将需要提供一个安装程序能够安装该类型的包.</p>
+				<p>言归正传, composer支持3种类型:</p>
+				<ul><li><strong>library:</strong>这是默认的.它会简单复制文件到<code>vendor</code>.</li>
+					<li><strong>metapackage:</strong>一个包含将会触发其安装的要求，但是不会包含和写入到文件系统的空包. 因此它不需要一个dist或者看安装的源key.</li>
+					<li><strong>composer-installer:</strong>一个type为<code>composer-installer</code>的包提供一个安装其他包自定义类型. 了解更多见
+						<a href="articles/custom-installers.md">相关文章</a>.</li>
+				</ul><p>除非当你安装时需要自定逻辑时才使用一个custom type.推荐忽略它让其默认为<code>library</code>.</p>
 				<h3 id="keywords">keywords<a href="#keywords" class="anchor">#</a></h3>
-				<p>An array of keywords that the package is related to. These can be used for
-					searching and filtering.</p>
-				<p>Examples:</p>
+				<p>包相关的关键字的数组.这些可以被用来搜索和过滤.</p>
+				<p>例子:</p>
 				<pre><code>logging
 events
 database
 redis
 templating
 </code></pre>
-				<p>Optional.</p>
+				<p>可选的.</p>
 				<h3 id="homepage">homepage<a href="#homepage" class="anchor">#</a></h3>
-				<p>An URL to the website of the project.</p>
-				<p>Optional.</p>
+				<p>项目的官方网站链接.</p>
+				<p>可选的.</p>
 				<h3 id="time">time<a href="#time" class="anchor">#</a></h3>
-				<p>Release date of the version.</p>
-				<p>Must be in <code>YYYY-MM-DD</code> or <code>YYYY-MM-DD HH:MM:SS</code> format.</p>
-				<p>Optional.</p>
+				<p>版本发布的时间.</p>
+				<p>必须以<code>YYYY-MM-DD</code>或者<code>YYYY-MM-DD HH:MM:SS</code>格式.</p>
+				<p>可选的.</p>
 				<h3 id="license">license<a href="#license" class="anchor">#</a></h3>
-				<p>The license of the package. This can be either a string or an array of strings.</p>
-				<p>The recommended notation for the most common licenses is (alphabetical):</p>
+				<p>包的版权.可以是一个字符串也可以是一个字符串数组.</p>
+				<p>推荐的最常见的声明写法(按字母顺序):</p>
 				<pre><code>Apache-2.0
 BSD-2-Clause
 BSD-3-Clause
@@ -216,9 +196,8 @@ LGPL-3.0
 LGPL-3.0+
 MIT
 </code></pre>
-				<p>Optional, but it is highly recommended to supply this. More identifiers are
-					listed at the <a href="http://www.spdx.org/licenses/">SPDX Open Source License Registry</a>.</p>
-				<p>An Example:</p>
+				<p>可选的, 但是强烈介意使用这个.更多的标识符列在<a href="http://www.spdx.org/licenses/">SPDX开源许可证注册表</a>.</p>
+				<p>一个例子:</p>
 				<pre><code>{
 	"license": "MIT"
 }
